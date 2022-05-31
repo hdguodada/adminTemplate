@@ -17,5 +17,12 @@ export default {
       changeOrigin: true,
       pathRewrite: { '^/dev': '' },
     },
+    '/account': {
+      target: 'http://10.45.207.154:8880/grid/dygrid/',
+      // 配置了这个可以从 http 代理到 https
+      // 依赖 origin 的功能可能需要这个，比如 cookie
+      changeOrigin: true,
+      pathRewrite: { '^/account': '' },
+    }
   },
 };
