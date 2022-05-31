@@ -1,12 +1,12 @@
-import type { Settings as LayoutSettings } from '@ant-design/pro-layout';
-import { PageLoading, SettingDrawer } from '@ant-design/pro-layout';
-import { history } from 'umi';
+import type {Settings as LayoutSettings} from '@ant-design/pro-layout';
+import {PageLoading, SettingDrawer} from '@ant-design/pro-layout';
+import type {RequestConfig, RunTimeLayoutConfig} from 'umi';
+import {history} from 'umi';
 import RightContent from '@/components/RightContent';
 import Footer from '@/components/Footer';
-import { LinkOutlined } from '@ant-design/icons';
+import {LinkOutlined} from '@ant-design/icons';
 import defaultSettings from '../config/defaultSettings';
-import { getCurrentUser } from '@/services/account';
-import type { RequestConfig, RunTimeLayoutConfig } from 'umi';
+import {getCurrentUser} from '@/services/account';
 
 const isDev = process.env.NODE_ENV === 'development';
 const loginPath = '/user/login';
@@ -109,28 +109,6 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
   };
 };
 
-//
-/** 异常处理程序 */
-// const errorHandler = (error: ResponseError) => {
-//   const { response } = error;
-//   if (response && response.status) {
-//     const errorText = codeMessage[response.status] || response.statusText;
-//     const { status, url } = response;
-//
-//     notification.error({
-//       message: `请求错误 ${status}: ${url}`,
-//       description: errorText,
-//     });
-//   }
-//
-//   if (!response) {
-//     notification.error({
-//       message: error.message,
-//     });
-//   }
-//   throw error;
-// };
-
 /** 请求拦截器 */
 const authHeaderInterceptor = (url: string, options: any) => {
   const token = localStorage.getItem('token');
@@ -143,10 +121,6 @@ const authHeaderInterceptor = (url: string, options: any) => {
 /** 响应拦截 增加延时 */
 const demoResponseInterceptors = async (response: Response) => {
   try {
-    const data = await response.clone().json();
-    if (data.code !== '0') {
-      return Promise.reject(new Error(data.msg || 'Error'));
-    }
     return response;
   } catch (e) {
     return response;
@@ -154,7 +128,6 @@ const demoResponseInterceptors = async (response: Response) => {
 };
 
 export const request: RequestConfig = {
-  // errorHandler,
   requestInterceptors: [authHeaderInterceptor],
   responseInterceptors: [demoResponseInterceptors],
 };

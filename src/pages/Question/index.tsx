@@ -49,6 +49,7 @@ const Q_Table: React.FC = () => {
       actionRef={actionRef}
       request={async () => {
         const d = await q_banks();
+        console.log(d)
         return {
           data: d.content,
         };

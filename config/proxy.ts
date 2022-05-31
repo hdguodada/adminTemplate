@@ -9,13 +9,12 @@
 export default {
   dev: {
     // localhost:8000/api/** -> https://preview.pro.ant.design/api/**
-    '/dev': {
+    '/api': {
       // 要代理的地址
-      target: 'http://10.45.207.154:8880/grid/dygrid/',
+      target: 'http://192.168.31.54:7622/',
       // 配置了这个可以从 http 代理到 https
       // 依赖 origin 的功能可能需要这个，比如 cookie
       changeOrigin: true,
-      pathRewrite: { '^/dev': '' },
     },
     '/account': {
       target: 'http://10.45.207.154:8880/grid/dygrid/',

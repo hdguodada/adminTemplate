@@ -54,7 +54,7 @@ export default defineConfig({
   webpack5: {},
   exportStatic: {},
   define: {
-    API_URL: '/dev',
+    API_URL: '',
     ACCOUNT_URL: "/account"
   },
   publicPath: '/admin/',
